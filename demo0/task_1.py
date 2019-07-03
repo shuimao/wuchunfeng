@@ -1,1 +1,1 @@
-print('dei！dei！dei！')
+import django

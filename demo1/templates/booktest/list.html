@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表</title>
+</head>
+<body>
+    <h2>列表</h2>
+    <!--<a href="/booktest/detail/1/">列表1</a>-->
+    <!--<a href="/booktest/detail/2/">列表2</a>-->
+    <!--<a href="/booktest/detail/3/">列表3</a>-->
+    <span>当前书籍为：</span> {{ book.title }}
+    <br>
+    <span>书中角色：</span>
+    <ul>
+        {% for hero in book.heroinfo_set.all %}
+        <li><a href="/booktest/detail/{{ hero.id }}">{{ hero.heroname }}</a></li>
+
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

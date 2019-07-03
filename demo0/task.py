@@ -1,1 +1,2 @@
-print('hello world')
+import django
+print(django.__version__)
