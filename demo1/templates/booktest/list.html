@@ -14,10 +14,21 @@
     <span>书中角色：</span>
     <ul>
         {% for hero in book.heroinfo_set.all %}
-        <li><a href="/booktest/detail/{{ hero.id }}">{{ hero.heroname }}</a></li>
+        <li><a href="{%url 'booktest:detail' hero.id%}">{{ hero.heroname }}</a></li>
 
         {% endfor %}
+        <br>
+        <a href="{% url 'booktest:addhero' book.id%}">添加角色</a>
     </ul>
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

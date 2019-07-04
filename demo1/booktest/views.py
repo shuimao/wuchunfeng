@@ -1,9 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,reverse
 
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
 from .models import *
+from django.http import HttpResponseRedirect
+from django.views.generic import TemplateView
+from django.views.generic import View
+
 
 def index(responses):
     # return HttpResponse('首页'  "<a href = '/booktest/list/'>列表页</a>")
@@ -25,3 +29,34 @@ def detail(responses, id):
     result = temp.render({'hero':hero})
     return HttpResponse(result)
 
+def deletehero(request, id):
+    temp = loader.get_template('booktest/deletehero.html')
+
+    hero = HeroInfo.objects.get(pk=id)
+    he1 = hero.book.id
+    hero.delete()
+    # return HttpResponse('成功')
+    return redirect( reverse('booktest:list',args=(he1,)))
+
+def addhero(request, id):
+    # return HttpResponse('成功')
+    book = BookInfo.objects.get(pk=id)
+    if request.method == 'GET':
+
+        return render(request, 'booktest/addhero.html', {'book': book})
+    elif request.method == 'POST':
+        name = request.POST.get('heroname')
+        content = request.POST.get('content')
+        gender = request.POST.get('gender')
+        rate = request.POST.get('rate')
+        hero = HeroInfo()
+        hero.heroname = name
+        hero.herocontent = content
+        hero.herogender = gender
+        hero.herorate = rate
+        hero.book = book
+        hero.save()
+        return redirect(reverse("booktest:list", args=(id,)))
+        # return HttpResponse('添加成功')
+
+    # book = BookInfo.objects.get(pk=id)

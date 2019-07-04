@@ -14,7 +14,7 @@
     <ul>
         {% for book in books %}
         <li>
-            <a href="/booktest/list/{{ book.id }}/"><span class="bookname" >{{ book.title }}</span></a>
+            <a href="{% url 'booktest:list' book.id %}"><span class="bookname" >{{ book.title }}</span></a>
         </li>
         {% endfor %}
     </ul>

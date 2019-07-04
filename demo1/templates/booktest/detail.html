@@ -6,10 +6,10 @@
 </head>
 <body>
     <h2>详情</h2>
-    <a href="/booktest/index/">主页</a>
+    <a href="{% url 'booktest:index'%}">主页</a>
     <ul>
 
-        <li>{{ hero.heroname }}--{{ hero.herocontent }}</li>
+        <li>{{ hero.heroname }}--{{ hero.herocontent }}--<a href="{% url 'booktest:deletehero' hero.id %}">{{ '删除' }}</a></li>
 
     </ul>
 </body>
