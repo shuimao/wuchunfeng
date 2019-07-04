@@ -60,3 +60,15 @@ def addhero(request, id):
         # return HttpResponse('添加成功')
 
     # book = BookInfo.objects.get(pk=id)
+
+def addbook(request):
+    # return HttpResponse('成功')
+    if request.method == 'GET':
+        return render(request,'booktest/addbook.html')
+    elif request.method == 'POST':
+        bookname = request.POST.get('bookname')
+        book = BookInfo()
+        book.title =bookname
+        book.save()
+        return redirect(reverse("booktest:index"))
+

@@ -17,7 +17,10 @@
             <a href="{% url 'booktest:list' book.id %}"><span class="bookname" >{{ book.title }}</span></a>
         </li>
         {% endfor %}
+
     </ul>
+    <br>
+    <a href="{% url 'booktest:addbook'%}">添加书籍</a>
 
 
 
