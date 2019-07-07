@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项</title>
+</head>
+<body>
+    <form action="{% url 'poll2:detail2' quet.id %}" method="post">
+        {% for i in quet.options_set.all %}
+
+            {% if forloop.counter == 1 %}
+                <li>
+                    <input type="radio" name="option" value="{{ i.id }}" checked>{{ i.opt }}
+                </li>
+            {% else %}
+                <li>
+                     <input type="radio" name="option" value="{{ i.id }}">{{ i.opt }}
+                </li>
+
+            {% endif %}
+            {% empty %}
+            <li>没有选项</li>
+        {% endfor %}
+        <input type="submit" value="投票">
+    </form>
+</body>
+</html>

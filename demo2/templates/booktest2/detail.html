@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍详情</title>
+</head>
+<body>
+    {% for role in book.role_set.all %}
+
+    <ul>
+        <li>
+            {{ role.rolename }}---{{ role.content }}---{{ role.weapon }}<a href="{% url 'booktest2:roledel' role.id %}">删除</a>
+        </li>
+    </ul>
+    {% endfor %}
+
+    <a href="{% url 'booktest2:roleadd' book.id %}">角色添加</a>
+    <a href="{% url 'booktest2:index' %}">返回首页</a>
+</body>
+</html>

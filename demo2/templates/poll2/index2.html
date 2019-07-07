@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+     <ul>
+        {% for i in quet %}
+        <li>
+
+            <a href="{% url 'poll2:list2' i.id %}">{{ i.qut }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

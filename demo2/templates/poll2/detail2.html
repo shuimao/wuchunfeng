@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结果</title>
+</head>
+<body>
+     <ul>
+        {% for i in quet.options_set.all %}
+        <li>{{ i.opt }}----{{ i.num }}</li>
+        {% endfor %}
+        <a href="{% url 'poll2:index2'%}">返回问题页</a>
+    </ul>
+</body>
+</html>

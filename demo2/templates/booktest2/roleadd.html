@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色添加</title>
+</head>
+<body>
+    <form action="{% url 'booktest2:roleadd' book.id %}" method="post">
+        <ul>
+            <li>角色名字：<input type="text" name="name"></li>
+            <li>角色详情：<input type="text" name="content"></li>
+            <li>武器：<input type="text" name="weapon"></li>
+            <li><input type="submit" value="添加"></li>
+        </ul>
+    </form>
+</body>
+</html>
