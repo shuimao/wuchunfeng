@@ -9,4 +9,7 @@ urlpatterns = [
     url(r'^detail/(\d+)/$', views.detail, name='detail'),
     url(r'^roledel/(\d+)/$', views.roledel, name='roledel'),
     url(r'^roleadd/(\d+)/$', views.roleadd, name='roleadd'),
+    url(r'^login/$', views.login, name='login'),
+    url(r'^logout/$', views.logout, name='logout'),
+    url(r'^regist/$', views.regist, name='regist'),
 ]
