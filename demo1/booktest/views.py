@@ -6,24 +6,32 @@ from django.template import loader
 from .models import *
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
-from django.views.generic import View
+from django.views.generic import View,ListView
+
+class ListView(ListView):
+    model = BookInfo
+    template_name = "booktest/indexes.html"
+    context_object_name = "books"
+    def get_queryset(self):
+        return BookInfo.objects.all()[0:1]
 
 
-def index(responses):
-    # return HttpResponse('首页'  "<a href = '/booktest/list/'>列表页</a>")
-    temp1 = loader.get_template("booktest/index.html")
-    books = BookInfo.objects.all()
-    result = temp1.render({'books':books })
-    return HttpResponse(result)
 
-def list(responses, id):
+# def indexes(responses):
+#     # return HttpResponse('首页'  "<a href = '/booktest/list/'>列表页</a>")
+#     temp1 = loader.get_template("booktest/indexes.html")
+#     books = BookInfo.objects.all()
+#     result = temp1.render({'books':books })
+#     return HttpResponse(result)
+
+def list(request, id):
     # return HttpResponse('列表'  "<a href = '/booktest/detail/1/'>详情页</a>")
     temp = loader.get_template('booktest/list.html')
     book = BookInfo.objects.get(pk=id)
     result = temp.render({'book':book})
     return HttpResponse(result)
 def detail(responses, id):
-    # return HttpResponse(" 详情%s  <a href = '/booktest/index/'>主页</a>" %(id,))
+    # return HttpResponse(" 详情%s  <a href = '/booktest/indexes/'>主页</a>" %(id,))
     temp = loader.get_template("booktest/detail.html")
     hero = HeroInfo.objects.get(pk=id)
     result = temp.render({'hero':hero})
@@ -70,5 +78,5 @@ def addbook(request):
         book = BookInfo()
         book.title =bookname
         book.save()
-        return redirect(reverse("booktest:index"))
+        return redirect(reverse("booktest:indexes"))
 
