@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% extends 'lagou/base.html' %}
+
+{% block title %}
+    <title>资讯</title>
+{% endblock %}
+
+{% block body %}
+
+<table id="webContainerTable" class="webContainerTable" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+        <td align="center">
+            <div id="webContainer" class="webContainer">
+                <div id="container" class="container">
+                    <table class="containerTop" cellpadding="0" cellspacing="0">
+                        <tbody><tr valign="top">
+                            <td class="left"></td>
+                            <td class="center"></td>
+                            <td class="right"></td>
+                        </tr>
+                        </tbody></table>
+
+                    <table class="containerMiddle" cellpadding="0" cellspacing="0">
+                        <tbody><tr valign="top">
+                            <td id="containerMiddleLeft" class="containerMiddleLeft">
+
+
+
+
+                            </td>
+
+                            <td class="containerMiddleCenter">
+                                <div id="containerMiddleCenterTop" class="containerMiddleCenterTop">
+
+                                </div>
+
+                                <div id="containerForms" class="containerForms">
+                                    <div id="topForms" class="column forms mainForms topForms" style="display:none">
+
+                                    </div>
+
+                                    <table class="containerFormsMiddle" cellpadding="0" cellspacing="0">
+                                        <tbody><tr>
+                                            <td valign="top" id="containerFormsLeft" class="containerFormsLeft" style="display:none">
+                                                <div class="containerFormsLeftTop">
+                                                </div>
+                                                <div id="leftForms" class="column forms sideForms leftForms">
+
+                                                </div>
+                                                <div class="containerFormsLeftBottom">
+                                                </div>
+                                            </td>
+
+                                            <td valign="top" id="containerFormsCenter" class="containerFormsCenter">
+
+                                                <div id="centerTopForms" class="column forms mainForms centerTopForms">
+                                                    <div id="module12" _indexclass="formIndex1" _moduletype="12" _modulestyle="103" _moduleid="12" class="form form12 formIndex1 formStyle103" title="" _sys="0" _banid="" style="" _side="0" _intab="0" _inmulmcol="0" _infullmeasure="0" _inpack="0" _inpopupzone="0" _infullmeasurepack="0" _intabpack="0" _autoheight="1" _global="false" _independent="false" data-scrollbar="0">
+                                                        <table class="formTop formTop12" cellpadding="0" cellspacing="0"><tbody><tr><td class="left"></td><td class="center"></td><td class="right"></td></tr></tbody></table>
+                                                        <table class=" formMiddle formMiddle12" style="" cellpadding="0" cellspacing="0"><tbody><tr>
+                                                            <td class="formMiddleLeft formMiddleLeft12"></td>
+                                                            <td class="formMiddleCenter formMiddleCenter12 " valign="top">
+                                                                <div class="formMiddleContent formMiddleContent12 fk-formContentOtherPadding" tabstyle="0">
+                                                                    <div class="newsDetail newsDetailV2" newsid="12">
+                                                                        <h1 class="title">{{ article.atitle|safe }}</h1>
+                                                                        <div class="line1"></div>
+                                                                        <div class="richContent  richContent0">
+                                                                            <div style="margin-top: 5px ; margin-right: 50px ; margin-bottom: 5px ; margin-left: 50px">
+                                                                                <span style="font-family:微软雅黑;font-size:14px;color:#333333;">{{ article.body|safe }}</span></p>
+                                                                            </div>
+                                                                            <p>
+                                                                        <div class="middlePanel" style="height: 71px;">
+                                                                            <div id="prevAndNextDivV2"><div id="newsPagenation12" class="newsPagenation" style="display:block;">
+                                                                                <div class="pagenationV2"><span class="pageTag">下一篇</span><a hidefocus="true" href="{% url 'goods:content' nextid %}">{{ nextarticle }}</a></div>
+                                                                            </div>
+
+                                                                            </div><div class="newsGroup">
+                                                                            <!--<span class="newsGroupName">文章分类：</span>-->
+                                                                            <!--<a class="newsGroupTag" href="nr.jsp?mid=12&amp;groupId=1" target="_self">行业资讯</a></div>-->
+                                                                            <!--<div class="shareInfo"><span class="shareTag">分享到：</span><div class="shareListPanel"><a class="shareIcon Weixin" hidefocus="true" title="分享到 微信" href="javascript:;" onclick="Site.wxShareAlter('/qrCode.jsp?cmd=mobiDetailQR&amp;id=12&amp;lcid=2052&amp;size=190&amp;t=1', true);return false;"></a><a class="shareIcon sina_weibo" hidefocus="true" title="分享到 新浪微博" href="javascript:;" onclick="window.open(&quot;http://service.weibo.com/share/share.php?title=%E3%80%90%E8%B0%81%E5%9C%A8%E4%B8%BA%E2%80%9C%E8%92%9C%E4%BD%A0%E7%8B%A0%E2%80%9D%E6%8E%A8%E6%B3%A2%E5%8A%A9%E6%BE%9C+-+%E6%9E%9C%E7%84%B6%E6%96%B0%E9%B2%9C%E3%80%91http%3A%2F%2Fwww.esenbol.com%2Fnd.jsp%3Fid%3D12%26_sc%3D2&amp;url=http%3A%2F%2Fwww.esenbol.com%2Fnd.jsp%3Fid%3D12%26_sc%3D2&amp;pic=http%3A&quot;)"></a><a class="shareIcon qq_share" hidefocus="true" title="分享到 QQ分享" href="javascript:;" onclick="window.open(&quot;http://connect.qq.com/widget/shareqq/index.html?summary=http%3A%2F%2Fwww.esenbol.com%2Fnd.jsp%3Fid%3D12%26_sc%3D2&amp;url=http%3A%2F%2Fwww.esenbol.com%2Fnd.jsp%3Fid%3D12%26_sc%3D2&amp;pics=http%3A&amp;title=%E3%80%90%E8%B0%81%E5%9C%A8%E4%B8%BA%E2%80%9C%E8%92%9C%E4%BD%A0%E7%8B%A0%E2%80%9D%E6%8E%A8%E6%B3%A2%E5%8A%A9%E6%BE%9C+-+%E6%9E%9C%E7%84%B6%E6%96%B0%E9%B2%9C%E3%80%91&quot;)"></a><a class="shareIcon qq_zone" hidefocus="true" title="分享到 QQ空间" href="javascript:;" onclick="window.open(&quot;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary=http%3A%2F%2Fwww.esenbol.com%2Fnd.jsp%3Fid%3D12%26_sc%3D2&amp;url=http%3A%2F%2Fwww.esenbol.com%2Fnd.jsp%3Fid%3D12%26_sc%3D2&amp;pics=http%3A&amp;title=%E3%80%90%E8%B0%81%E5%9C%A8%E4%B8%BA%E2%80%9C%E8%92%9C%E4%BD%A0%E7%8B%A0%E2%80%9D%E6%8E%A8%E6%B3%A2%E5%8A%A9%E6%BE%9C+-+%E6%9E%9C%E7%84%B6%E6%96%B0%E9%B2%9C%E3%80%91&quot;)"></a><a class="shareIcon douban" hidefocus="true" title="分享到 豆瓣网" href="javascript:;" onclick="window.open(&quot;http://shuo.douban.com/!service/share?name=%E3%80%90%E8%B0%81%E5%9C%A8%E4%B8%BA%E2%80%9C%E8%92%9C%E4%BD%A0%E7%8B%A0%E2%80%9D%E6%8E%A8%E6%B3%A2%E5%8A%A9%E6%BE%9C+-+%E6%9E%9C%E7%84%B6%E6%96%B0%E9%B2%9C%E3%80%91http%3A%2F%2Fwww.esenbol.com%2Fnd.jsp%3Fid%3D12%26_sc%3D2&amp;text=http%3A%2F%2Fwww.esenbol.com%2Fnd.jsp%3Fid%3D12%26_sc%3D2&amp;image=http%3A&quot;)"></a><a class="shareIcon baidu_tieba" hidefocus="true" title="分享到 百度贴吧" href="javascript:;" onclick="window.open(&quot;http://tieba.baidu.com/i/app/open_share_api?comment=&amp;pic=http%3A&amp;url=http%3A%2F%2Fwww.esenbol.com%2FshareUrl.jsp%3Fid%3D12%26_sc%3D2%26urlRdKey%3Dnd&amp;title=%E3%80%90%E8%B0%81%E5%9C%A8%E4%B8%BA%E2%80%9C%E8%92%9C%E4%BD%A0%E7%8B%A0%E2%80%9D%E6%8E%A8%E6%B3%A2%E5%8A%A9%E6%BE%9C+-+%E6%9E%9C%E7%84%B6%E6%96%B0%E9%B2%9C%E3%80%91http%3A%2F%2Fwww.esenbol.com%2FshareUrl.jsp%3Fid%3D12%26_sc%3D2%26urlRdKey%3Dnd&quot;)"></a></div></div><div class="clearfloat"></div></div>-->
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="formMiddleRight formMiddleRight12"></td>
+                                                        </tr></tbody></table>
+                                                        <table class="formBottom formBottom12" cellpadding="0" cellspacing="0"><tbody><tr><td class="left left12"></td><td class="center center12"></td><td class="right right12"></td></tr></tbody></table>
+                                                        <div class="clearfloat clearfloat12"></div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="containerFormsCenterMiddle J_containerFormsCenterMiddle">
+                                                    <div id="middleLeftForms" class="column forms mainForms middleLeftForms" style="display:none">
+
+                                                    </div>
+                                                    <div id="middleRightForms" class="column forms mainForms middleRightForms" style="display:none">
+
+                                                    </div>
+                                                    <div class="clearfloat"></div>
+                                                </div>
+                                                <div id="centerBottomForms" class="column forms mainForms centerBottomForms" style="display:none">
+
+                                                </div>
+                                            </td>
+
+                                            <td valign="top" id="containerFormsRight" class="containerFormsRight" style="display:none">
+                                                <div class="containerFormsRightTop">
+                                                </div>
+                                                <div id="rightForms" class="column forms sideForms rightForms">
+
+                                                </div>
+                                                <div class="containerFormsRightBottom">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody></table>
+
+                                    <div id="bottomForms" class="column forms mainForms bottomForms" style="display:none">
+
+                                    </div>
+
+                                    <div id="containerPlaceholder" class="containerPlaceholder" style="height: 0px;"></div>
+
+                                </div>
+
+                                <div id="containerMiddleCenterBottom" class="containerMiddleCenterBottom">
+                                </div>
+
+                            </td>
+
+                            <td id="containerMiddleRight" class="containerMiddleRight"></td>
+                        </tr>
+                        </tbody></table>
+
+                    <table class="containerBottom" cellpadding="0" cellspacing="0">
+                        <tbody><tr valign="top">
+                            <td class="left"></td>
+                            <td class="center"></td>
+                            <td class="right"></td>
+                        </tr>
+                        </tbody></table>
+                </div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{% endblock %}

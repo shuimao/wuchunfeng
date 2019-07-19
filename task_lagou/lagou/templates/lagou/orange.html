@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>果然新鲜</title>
+
+    <link href="/static/css/touch.css"rel="stylesheet">
+    <link href="/static/css/orange.css"rel="stylesheet">
+    <link href="/static/css/share.css"rel="stylesheet">
+    <link href="/static/style/register-login.css" type="text/css" >
+    <script src="/static/js/jquery-1.12.3.js"></script>
+    </script><script type="text/javascript" src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+    <style>
+        #button{
+			width: 100%;
+			background: #0f88eb;
+    		box-shadow: none;
+    		border: 0;
+    		border-radius: 3px;
+    		line-height: 41px;
+    		color: #fff;
+    		display: block;
+    		font-size: 15px;
+    		cursor: pointer;
+    		font-family: 'Microsoft Yahei';
+		}
+    </style>
+</head>
+<body>
+<!--顶部导航-->
+<div class="headr">
+    <div class="heard-con">
+        {% if request.user and request.user.is_authenticated %}
+            当前用户为{{ request.user }} <a href="{% url 'goods:logout' %}">退出</a>
+        {% endif %}
+        <!--<img src="/static/images/logo.jpg" style="margin-top: 7px;float: left;position: absolute">-->
+        <div class="headr-nav">
+            <ul>
+                <li><a href="{% url 'goods:index' %}">首页</a> </li>
+                <li><a href="{% url 'goods:hot' %}">蔬果热卖</a> </li>
+                <li><a href="{% url 'goods:produ' %}">全部产品</a> </li>
+                <li><a href="{% url 'goods:consult' %}">最新资讯</a></li>
+                <li><a href="{% url 'goods:touch' %}">联系我们</a> </li>
+            </ul>
+            <div class="sptopfoot">
+                <div class="spbottom"  >
+                </div>
+            </div>
+        </div>
+        <div class="headr-right">
+            <a href="{% url 'goods:cart' %}"><i class="iconfont" style="font-size: 16px;margin-right: 10px">&#xe7d5;</i>我的购物车 </a>
+            {% comment %}
+                <div class="hr-car">
+                    <i class="iconfont"style="font-size: 40px;margin-right: 10px">&#xe633;</i>
+                    您的购物车内暂时没有任何产品。∨
+                </div>
+            {% endcomment %}
+        </div>
+    </div>
+</div>
+<!--顶部导航结束-->
+<!--banner图片-->
+<div class="her-banner">
+
+</div>
+<!--banner图片结束-->
+<!--主页内容-->
+<div class="content">
+    <div class="cont-top">
+        <div class="cont-left">
+            <div class="ctl-img">
+                <img style="height: 420px" src="/media/{{ good.content }}">
+            </div>
+            <div class="collect">
+                <div class="coll">
+                    <i class="iconfont">&#xe641;</i>
+                    收藏
+                </div>
+                {% comment %}
+                <div class="coll">
+                    <i class="iconfont">&#xe617;</i>
+                    分享
+                    <div class="share">
+
+                    </div>
+                </div>
+                {% endcomment %}
+            </div>
+            <div class="next">
+                <div >
+                    <a class="nt" href="{% url 'goods:orange' id2 %}">上一个</a>
+
+                </div>
+                <div class="nt ntp">
+                    <a class="nt" href="{% url 'goods:orange' id1 %}">下一个</a>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="cont-right">
+            <div class="J_productTitle title g_minor">
+                <span>{{ good.gtitle }}</span>
+                <span id="productQrCode" class="webSiteQrCode">&nbsp;
+                <div class="code">
+                    <img src="/static/images/qrCode%20(1).gif">
+                    <p>扫描二微码</p>
+                </div>
+                </span>
+            </div>
+           <div class="pic">
+               <span class="ppi">价格:</span>
+               <span class="f-mallUnit">￥</span>
+               <span class="pcc">{{ good.gprice }}</span>
+           </div>
+            <div class="pict">
+                <div class="f-proSatifySumWrap">
+                    <div class="f-satifyDetail">
+                        <span class="g_minor  salesVolume">评论：</span><span class="J_commNum">{{ good.comment_set.count }}</span>条
+                    </div>
+                    <div class="J_pdDetailBorder f-pdDetailBorder"></div>
+                    <div class="f-satifyDetail">
+                        <span class="g_minor  salesVolume">收藏：</span>{{ good.collect }}
+                    </div>
+                </div>
+            </div>
+            <form action="{% url 'goods:addcart' good.id %}" method="post">
+                {% csrf_token %}
+                <div class="fk-pd5MallCartCount">
+                    <div class="f-cartbuyCountWrap">
+                        <span class="f-propName g_minor" style="width:75px;min-width:75px;max-width: 75px;">购买数量：</span>
+                        <input type="text" name="number" value="1" class="g_itext cartBuyCount f-cartBuyCount">
+                    </div>
+                    <div class="f-buyCountBtn">
+                        <div  class="f-countBtn mallJian"></div>
+                        <div  class="f-countBtn disableMallJian"></div>
+                    </div>
+                </div>
+                <div class="fk-pd5MallActBtns">
+                    <div >
+                        <button type="submit" class="buttn">加入购物车</button>
+
+                    </div>
+                    <button class="buttn butto" type="submit">
+                        立即购买
+                    </button>
+
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <div class="cont-bot">
+        <div class="hd">
+            <ul>
+                <li class="active">
+                    <div class="hd1 acti" >
+                    </div>
+                    产品详情
+                </li>
+                <li>
+                    <div class="hd1">
+                    </div>
+                    产品评论({{ good.comment_set.count }})
+                </li>
+                {% comment %}
+                <li>
+                    <div class="hd1">
+                    </div>
+                    销售记录(0)
+                </li>
+                {% endcomment %}
+            </ul>
+
+        </div>
+        <div class="bd">
+            <div class="bd1"style="display: block">
+
+                <img src="/media/{{ good.content }}">
+                <p>{{ good.content2 }}</p>
+
+
+
+            </div>
+            <div class="bd1">
+                <div>
+                    <p>留言内容</p>
+                    <form action="{% url 'goods:orange' good.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="siteFormMiddle" style="height: 102px; ">
+
+                            <textarea class="g_textarea resize" cols="50" rows="3" maxlength="1000" name="comment" placeholder="请输入留言"></textarea>
+                            <!--<input name="star" placeholder="评分">-->
+                            <!--<div class="star"style="line-height: 100px;">*</div>-->
+                        </div>
+
+                        <div style="width: 60px ; height: 50px">
+                            <button type="submit" id="button">评论</button>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+                <br>
+                <div>
+                    {% for i in allcomment %}
+                    <p>-----------------------------------------------------------------------------------------------------</p>
+                <ul>
+
+                    <li>
+                        <!--<span>{{ i.name }}111111111</span>-->
+                        <time datetime="2012-11-09T23:15:57+00:00">{{ i.create_time }}</time>
+                        <div>
+                            {{ i.content }}
+                        </div>
+                    </li>
+
+                </ul>
+                {% endfor %}
+
+                </div>
+                <!--评论内容-->
+
+
+                <!--<div><p>评论</p></div>-->
+                {% comment %}
+                <img src="/static/images/or-5.jpg">
+                <img src="/static/images/or-6.jpg">
+                {% endcomment %}
+            </div>
+            {% comment %}
+            <div class="bd1" >
+                <div class="sale" style="display: block">
+                    <ul>
+                        <li>买家</li>
+                        <li>选项​​信息</li>
+                        <li>数量</li>
+                        <li>成交时间</li>
+                    </ul>
+                    <ul>
+                        <li>买家1</li>
+                        <li>选项​​信息2</li>
+                        <li>数量3</li>
+                        <li>成交时间4</li>
+                    </ul>
+                    <ul>
+                        <li>买家1</li>
+                        <li>选项​​信息2</li>
+                        <li>数量3</li>
+                        <li>成交时间4</li>
+                    </ul>
+                </div>
+            </div>
+            {% endcomment %}
+        </div>
+    </div>
+</div>
+<!--主页内容结束-->
+<!--底部-->
+<div class="footer">
+    <div class="ft-con">
+        <div class="ft-top">
+            <img src="/static/images/fot-1.jpg">
+        </div>
+        <div class="ft-bo">
+            <div class="ft-b">
+                <h3>服务保障</h3>
+                <p>正品保证</p>
+                <p>7天无理由退换</p>
+                <p>退货返运费</p>
+                <p>7X15小时客户服务</p>
+
+            </div>
+            <div class="ft-b">
+                <h3>支付方式</h3>
+                <p>公司转账</p>
+                <p>货到付款</p>
+                <p>在线支付</p>
+                <p>分期付款</p>
+
+            </div>
+            <div class="ft-b">
+                <h3>商家服务</h3>
+                <p>商家入驻</p>
+                <p>培训中心</p>
+                <p>广告服务</p>
+                <p>服务市场</p>
+
+            </div>
+            <div class="ft-b">
+                <h3>服务保障</h3>
+                <p>免运费</p>
+                <p>海外配送</p>
+                <p>EMS</p>
+                <p>211限时达</p>
+
+            </div>
+
+        </div>
+        <div class="banq">
+            <p>©2016 果然新鲜 版权所有</p>
+            <p>手机版 | 本站使用<span><img src="/static/images/ft.jpg"></span>凡科建站搭建 | 管理登录</p>
+        </div>
+
+    </div>
+
+</div>
+<!--底部结束-->
+<!--弹框-->
+{% comment %}
+<div class="popup">
+    <div class="login">
+        <div class="del">×</div>
+        <div class="lg-cont">
+            <div class="lhd">
+                <ul>
+                    <li class="active">登录</li>
+                    <li>注册</li>
+                </ul>
+                <div class="lhdfoot">
+                    <div class="lhdbottom"  >
+                    </div>
+                </div>
+
+            </div>
+            <div class="lbd">
+                <div class="lbd1"style="display: block">
+                    <div id="memberLoginAcct" class="J_memberLoginItem memberLoginDialogItem">
+                        <input id="memberAcct" class="generateInput memberAcctInput" type="text" value="" placeholder="账号">
+                    </div>
+                    <div id="memberLoginPwd" class="J_memberLoginItem memberLoginDialogItem itemSpace">
+                        <input id="memberPwd" class="generateInput memberPwdInput" type="password" placeholder="密码"}>
+                    </div>
+                    <div class="loginButton loginButton">
+                        <div class="middle">登录</div>
+                    </div>
+                    <div class="bott"></div>
+                </div>
+                <div class="lbd1">
+                    <div class="msv">
+                        <div class="memberSignupItem">
+                            <div class="itemMiddle">
+                                <input type="text" placeholder="账号" >
+                            </div>
+                            <div class="itemRight">*</div>
+                        </div>
+                        <div class="memberSignupItem ">
+                            <div class="itemMiddle">
+                                <input type="password" id="memberSignupPwd" placeholder="密码" maxlength="50">
+                            </div>
+                            <div class="itemRight">*</div>
+                        </div>
+                        <div class="memberSignupItem">
+                            <div class="itemMiddle">
+                                <input type="password" id="memberSignupRepwd" placeholder="确认密码" maxlength="50">
+                            </div>
+                            <div class="itemRight">*</div>
+                        </div>
+                        <div class="memberSignupItem">
+                            <div class="itemMiddle">
+                                <input id="name" name="姓名" placeholder="姓名" class="userAddItem isCheckUAI" type="text" maxlength="50">
+                            </div>
+                            <div class="itemRight">*</div>
+                        </div>
+                        <div class="memberSignupItem">
+                            <div class="itemMiddle">
+                                <input id="email" name="邮箱" placeholder="邮箱" class="userAddItem" type="text" maxlength="50">
+                            </div>
+                            <div class="itemRight"></div>
+                        </div>
+                        <div class="memberSignupItem">
+                            <div class="itemMiddle">
+                                <input id="phone" name="电话" placeholder="电话" class="userAddItem" type="text" maxlength="50">
+                            </div>
+                            <div class="itemRight"></div>
+                        </div>
+                        <div class="memberSignupItem_remark">
+                            <div class="itemMiddle">
+                                <textarea id="memberSignupRemark" placeholder="留言" maxlength="200"></textarea>
+                            </div>
+                            <div class="itemRight"></div>
+                        </div>
+                        <div class="memberSignupItem_captcha">
+                            <div class="itemMiddle" style="float:left;width: 150px;">
+                                <input id="memberSignupCaptcha" type="text" maxlength="4" placeholder="验证码">
+                            </div>
+                            <div class="itemRightp">
+                                <img alt="" id="memberSignupCaptchaImg" class="memberSignupCaptchaImg" onclick="Site.changeCaptchaImg(this)" title="看不清，换一张" src="images/validateCode.jpg">
+                            </div>
+                        </div>
+                   </div>
+                    <div class="loginButton loginButton">
+                        <div class="middle">注册</div>
+                    </div>
+                    <div class="bott"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endcomment %}
+<!--弹框结束-->
+</body>
+<script src="/static/js/orange.js"></script>
+</html>

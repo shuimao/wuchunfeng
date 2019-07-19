@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+{% load my_func %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全部产品</title>
+    <link href="/static/css/produ.css"rel="stylesheet">
+    <link href="/static/css/share.css"rel="stylesheet">
+    <script src="/static/js/jquery-1.12.3.js"></script>
+</head>
+<body>
+<!--顶部导航-->
+<div class="headr">
+    <div class="heard-con">
+        {% if request.user and request.user.is_authenticated %}
+            当前用户为{{ request.user }} <a href="{% url 'goods:logout' %}">退出</a>
+        {% endif %}
+        <!--<img src="/static/images/logo.jpg" style="margin-top: 7px;float: left;position: absolute">-->
+        <div class="headr-nav">
+            <ul>
+                <li><a href="{% url 'goods:index' %}">首页</a> </li>
+                <li><a href="{% url 'goods:hot' %}">蔬果热卖</a> </li>
+                <li><a href="{% url 'goods:produ' %}"style="color: #4AB344"><span style="color: #4AB344">全部产品</span></a> </li>
+                <li><a href="{% url 'goods:consult' %}">最新资讯</a></li>
+                <li><a href="{% url 'goods:touch' %}">联系我们</a> </li>
+            </ul>
+            <div class="sptopfoot">
+                <div class="spbottom"  >
+                </div>
+            </div>
+        </div>
+        <div class="headr-right">
+            <a href="{% url 'goods:cart' %}"><i class="iconfont" style="font-size: 16px;margin-right: 10px">&#xe7d5;</i>我的购物车 </a>
+            {% comment %}
+                <div class="hr-car">
+                    <i class="iconfont"style="font-size: 40px;margin-right: 10px">&#xe633;</i>
+                    您的购物车内暂时没有任何产品。∨
+                </div>
+            {% endcomment %}
+        </div>
+    </div>
+</div>
+<!--顶部导航结束-->
+<!--banner图片-->
+<div class="her-banner">
+
+</div>
+<!--banner图片结束-->
+<div class="content">
+    <!--产品推荐开始-->
+    <div class="recommand clear">
+        <div class="rec-cont clear">
+            <div class="rec-left">
+                <div class="classily">
+                    <div class="cltop">
+                        <p>产品分类</p>
+                    </div>
+                    <div class="cltcon">
+                        {% bytype as type %}
+                        {% for i in type %}
+                            <p style="border-bottom:0px dashed #999999;"><a href="{% url 'goods:typetag' i.id %}">{{ i.ttitle }}</a></p>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <div class="service">
+                    <div class="cltop">
+                        <p>在线客服</p>
+                    </div>
+                    <div class="sercon">
+                       <div class="qqs">
+                           <p><a hidefocus="true" href="#">
+                               <span class="serOnline-img0 qqImg0">&nbsp;</span>蜜桃
+                               <a target=blank href=tencent://message/?uin=411468873&Site=www.woyouli.com&Menu=yes><img border="0" SRC=http://wpa.qq.com/pa?p=1:411468873:7 alt="点击这里给我发消息"></a>
+
+                           </a>
+                           </p>
+                           {% comment %}
+                           <P><a hidefocus="true" href="#">
+                               <span class="serOnline-img0 qqImg0">&nbsp;</span>芒果
+                               <a target=blank href=tencent://message/?uin=411468873&Site=www.woyouli.com&Menu=yes><img border="0" SRC=http://wpa.qq.com/pa?p=1:411468873:7 alt="点击这里给我发消息"></a>
+
+                           </a>
+                           </P>
+                           {% endcomment %}
+                       </div>
+                        <div class="tims">
+                            <div class="marBL-10">
+                                <span class="worktime-header-img">&nbsp;</span>
+                                <span class="serWorkTimeText"><b>工作时间</b></span>
+                            </div>
+                            <div class="serOnline-list-v "><span>周一至周五 ：8:30-17:30</span></div>
+                            <div class="serOnline-list-v lastData"><span>周六至周日 ：9:00-17:00</span></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="rec-right">
+                <div class="bd">
+                    <div class="bd1"  style="display: block">
+                        {% for i in page.object_list %}
+                            <div class="rcr">
+                            <div class="rcr-top">
+                                <img src="/media/{{ i.content }}" width="100%">
+                            </div>
+                            <div class="rcr-bot">
+                                <div class="rb-top">
+                                    {{ i.gtitle }}
+                                </div>
+                                <div class="second_P">
+                                    <span class="fk-prop">￥</span>
+                                        <span class="fk-prop-price">{{ i.gprice }}
+                                            <!--<span class="fk-prop-p">.00</span>-->
+                                        </span>
+                                    <span class="second_Marketprice">￥0.00</span>
+                                </div>
+                                <div class="buy">
+                                    <a class="second_mallBuy" href="{% url 'goods:orange' i.id %}">
+                                        <span style="color: white;">购买</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+                    </div>
+
+                    </div>
+
+
+                <div class="hd">
+
+
+                    <ul>
+                        {% if page.has_previous %}
+                        <li ><a href="?page={{ page.previous_page_number }}">上一页</a></li>
+                        {% endif %}
+
+                        {% for i in page.paginator.page_range %}
+                            {% if i == page.number %}
+                                <li><a href="?page={{ i }}" class="active">{{ i }}</a></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+
+                        {% endfor %}
+
+                        {% if page.has_next %}
+                        <li ><a href="?page={{ page.next_page_number }}">下一页</a></li>
+                        {% endif %}
+
+                    </ul>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!--产品推荐结束-->
+</div>
+<!--底部-->
+<div class="footer">
+    <div class="ft-con">
+        <div class="ft-top">
+            <img src="/static/images/fot-1.jpg">
+        </div>
+        <div class="ft-bo">
+            <div class="ft-b">
+                <h3>服务保障</h3>
+                <p>正品保证</p>
+                <p>7天无理由退换</p>
+                <p>退货返运费</p>
+                <p>7X15小时客户服务</p>
+
+            </div>
+            <div class="ft-b">
+                <h3>支付方式</h3>
+                <p>公司转账</p>
+                <p>货到付款</p>
+                <p>在线支付</p>
+                <p>分期付款</p>
+
+            </div>
+            <div class="ft-b">
+                <h3>商家服务</h3>
+                <p>商家入驻</p>
+                <p>培训中心</p>
+                <p>广告服务</p>
+                <p>服务市场</p>
+
+            </div>
+            <div class="ft-b">
+                <h3>服务保障</h3>
+                <p>免运费</p>
+                <p>海外配送</p>
+                <p>EMS</p>
+                <p>211限时达</p>
+
+            </div>
+
+        </div>
+        <div class="banq">
+            <p>©2016 果然新鲜 版权所有</p>
+            <p>手机版 | 本站使用<span><img src="/static/images/ft.jpg"></span>凡科建站搭建 | 管理登录</p>
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="/static/js/produ.js"></script>
+</html>
